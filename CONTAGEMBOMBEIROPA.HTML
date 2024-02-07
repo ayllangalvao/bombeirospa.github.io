@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contagem Regressiva</title>
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+	background-color: #000000; /* Fundo preto */
+        color: #ffffff; /* Texto branco */       
+        font-family: Arial, sans-serif;
+    }
+    #countdown {
+        font-size: 10em;
+        text-align: center;
+        font-family: 'Digital-7', sans-serif; /* Fonte de relógio digital */
+    }
+</style>
+<!-- Link para a fonte Digital-7 -->
+<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css2?family=Digital-7&display=swap">
+</head>
+<body>
+<div id="countdown">00:00:00</div>
+
+<script>
+    // Definindo a data-alvo (pode ser modificada conforme necessário)
+    var targetDate = new Date("2024-02-09T07:30:00").getTime();
+
+    var countdownInterval = setInterval(function() {
+        var now = new Date().getTime();
+        var distance = targetDate - now;
+
+        var hours = Math.floor(distance / (1000 * 60 * 60));
+        var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+        // Formatação para manter sempre dois dígitos
+        hours = ("0" + hours).slice(-2);
+        minutes = ("0" + minutes).slice(-2);
+        seconds = ("0" + seconds).slice(-2);
+
+        // Exibindo o resultado na div com id "countdown"
+        document.getElementById("countdown").innerHTML = hours + ":" + minutes + ":" + seconds;
+
+        // Se o contador chegar a zero, limpe o intervalo
+        if (distance < 0) {
+            clearInterval(countdownInterval);
+            document.getElementById("countdown").innerHTML = "00:00:00";
+        }
+    }, 1000);
+</script>
+</body>
+</html>
